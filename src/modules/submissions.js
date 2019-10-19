@@ -596,7 +596,9 @@
 		this.text = this.text.replace( new RegExp( '\\{\\{\\s*afc submission\\s*(?:\\||[^{{}}]*|{{.*?}})*?\\}\\}' +
 			// Also remove the AFCH-generated warning message, since if necessary the script will add it again
 			'( <!-- Do not remove this line! -->)?', 'gi' ), '' );
-		this.text = this.text.replace( /\{\{\s*afc comment\s*(?:\||[^{{}}]*|{{.*?}})*?\}\}/gi, '' );
+
+		// Nastiest hack of all time. As above, Parsoid would be great. Gotta wire it up asynchronously first, though.
+		this.text = this.text.replace( /\{\{\s*afc comment.+?\(UTC\)\}\}/gi, '' );
 
 		// Remove horizontal rules that were added by AFCH after the comments
 		this.text = this.text.replace( /^----+$/gm, '' );
@@ -2056,7 +2058,7 @@
 			newParams[ '3' ] = data.declineTextarea;
 		} else if ( declineReason2 === 'reason' ) {
 			newParams.details2 = data.declineTextarea;
-		} else if ( data.declineTextarea ) {
+		} else if ( isDecline && data.declineTextarea ) {
 
 			// But otherwise if addtional text has been entered we just add it as a new comment
 			afchSubmission.addNewComment( data.declineTextarea );
@@ -2074,7 +2076,7 @@
 		}
 
 		// If we're rejecting, any text in the text area is a comment
-		if ( data.rejectTextarea ) {
+		if ( !isDecline && data.rejectTextarea ) {
 			afchSubmission.addNewComment( data.rejectTextarea );
 		}
 
