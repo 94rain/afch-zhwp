@@ -1,4 +1,5 @@
-/* https://github.com/94rain/afch-zhwp, translated and adapted from https://github.com/WPAFC/afch-rewrite */
+/* https://github.com/94rain/afch-zhwp, translated and adapted from
+ * https://github.com/WPAFC/afch-rewrite */
 //<nowiki>
 ( function ( $, mw ) {
 	var subscriptToLoad = false,
@@ -13,10 +14,7 @@
 			// `submissions.js` is for reviewing textual
 			// Articles for Creation submissions.
 			submissions: [
-				'WikiProject:建立條目/',
-				'WikiProject_talk:建立條目/',
-				'User:',
-				'Draft:'
+				'WikiProject:建立條目/', 'WikiProject_talk:建立條目/', 'User:', 'Draft:'
 			]
 		};
 
@@ -46,15 +44,18 @@
 		// FIXME: Change when moving into production
 		AFCH.consts.beta = true;
 
-		AFCH.consts.scriptpath = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScript' );
+		AFCH.consts.scriptpath =
+      mw.config.get( 'wgServer' ) + mw.config.get( 'wgScript' );
 		AFCH.consts.baseurl = AFCH.consts.scriptpath +
-			'?action=raw&ctype=text/javascript&title=User:94rain/js/afch-master.js';
+      '?action=raw&ctype=text/javascript&title=User:94rain/js/afch-master.js';
 
 		$.getScript( AFCH.consts.baseurl + '/core.js' ).done( function () {
 			var loaded = AFCH.load( subscriptToLoad );
 			if ( !loaded ) {
-				mw.notify( wgULS('AFCH无法加载：','ARCH無法加載：') + ( AFCH.error || wgULS('未知错误','未知錯誤') ),
-					{ title: wgULS('AFCH错误','AFCH錯誤') } );
+				mw.notify(
+					wgULS( 'AFCH无法加载：', 'ARCH無法加載：' ) +
+              ( AFCH.error || wgULS( '未知错误', '未知錯誤' ) ),
+					{ title: wgULS( 'AFCH错误', 'AFCH錯誤' ) } );
 			}
 		} );
 	}
