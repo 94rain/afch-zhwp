@@ -775,7 +775,7 @@ window.wgULSv2 = function ( hant, tw ) {
 		// Store this to a variable so we can wait for its success
 		var loadViews = $.ajax( {
 			type: 'GET',
-			url: AFCH.consts.baseurl + '/tpl-submissions.js',
+			url: AFCH.consts.baseurl + wgULS( '/tpl-submissions_zh-hans.js', '/tpl-submissions_zh-hans.js' ),
 			dataType: 'text'
 		} ).done( function ( data ) {
 			afchViews = new AFCH.Views( data );

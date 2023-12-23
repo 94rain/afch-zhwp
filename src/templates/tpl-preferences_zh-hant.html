@@ -1,0 +1,28 @@
+﻿/* https://github.com/94rain/afch-zhwp, translated and adapted from https://github.com/WPAFC/afch-rewrite */
+//<nowiki>
+
+<!-- preferences -->
+<div class="afch afch-form afch-preferences">
+	<div class="details centered">
+		<strong>AFCH測試版</strong>
+		<div>使用者代理：{{userAgent}}</div>
+	</div>
+	<div id="autoOpenWrapper">
+		<label for="autoOpen" class="afch-label">在開啟草稿頁面時自動啟動AFCH腳本</label>
+		<input type="checkbox" id="autoOpen" class="afch-input" {{#autoOpen}}checked{{/autoOpen}} />
+	</div>
+	<div id="launchLinkPositionWrapper">
+		<label for="launchLinkPosition" class="afch-label">"審閱草稿(AFCH)"連結的位置</label>
+		<select id="launchLinkPosition" class="afch-input">
+			<option value="p-cactions">在"編輯"和"查看歷史"旁邊</option>
+			<option value="p-tb">頁左側的"工具"欄</option>
+		</select>
+	</div>
+	<div id="logCsdWrapper">
+		<label for="logCsd" class="afch-label">記錄快速刪除提名</label>
+		<input type="checkbox" id="logCsd" class="afch-input" {{#logCsd}}checked{{/logCsd}} />
+	</div>
+</div>
+<!-- /preferences -->
+
+//</nowiki>

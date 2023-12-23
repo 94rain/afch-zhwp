@@ -1,0 +1,318 @@
+﻿/* https://github.com/94rain/afch-zhwp, translated and adapted from https://github.com/WPAFC/afch-rewrite */
+//<nowiki>
+
+<!-- main -->
+<div class="review-panel initial">
+	<div class="initial-header">
+		<span>AFCH v<span title="{{versionName}}">{{version}}</span>&nbsp;
+		(<!-- Disabled due to issue #71 <span class="feedback-wrapper"></span> | --><span class="preferences-wrapper"></span>)</span>
+		審閱"{{title}}"
+	</div>
+	<div class="warnings hidden"></div>
+	<div class="button-wrapper">
+		{{#accept}}<a id="afchAccept" class="accept afch-button gradient-button">接受</a>{{/accept}}
+		{{#decline}}<a id="afchDecline" class="decline afch-button gradient-button">拒絕</a>{{/decline}}
+		{{#comment}}<a id="afchComment" class="comment afch-button gradient-button">評論</a>{{/comment}}
+		{{#submit}}<a id="afchSubmit" class="submit afch-button gradient-button">提交</a>{{/submit}}
+		<a id="afchO7" class="o7 afch-button gradient-button o7-related {{^o7}}hidden{{/o7}}">請求O7快速刪除</a>
+		<a id="afchPostponeO7" class="postpone-o7 afch-button gradient-button o7-related {{^o7}}hidden{{/o7}}">延後O7</a>
+		<div id="afchExtra" class="extra afch-button">
+			<div class="wrapper">
+				<div class="open" title="查看其它选项">«</div>
+				<div class="links">
+					<a id="afchClean" class="link">清理多餘模板</a>
+					<a id="afchMark" class="link">
+						{{#alreadyUnderReview}}取消{{/alreadyUnderReview}}{{^alreadyUnderReview}}{{/alreadyUnderReview}}標記為正在審閱
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /main -->
+
+<!-- warning-deletions-table -->
+<div class="deletion-log">
+	<table>
+		{{#deletions}}
+		<tr>
+			<td class="timestamp"><span title="{{timestamp}}">{{relativeTimestamp}}</span>:</td>
+			<td class="detail">
+				<span class="reason">{{{reason}}}</span>
+				<span class="actor">(被<a href="{{deletorLink}}">{{deletor}}</a>删除)</span>
+			</td>
+		</tr>
+		{{/deletions}}
+	</table>
+</div>
+<!-- /warning-deletions-table -->
+
+<!-- quick-action-processing -->
+<div class="review-panel {{actionClass}}">
+	<div class="header">{{actionTitle}}...</div>
+	<div id="afchContent" class="content centered">
+		<div id="afchSubmitForm" data-running="載入中..." class="gradient-button button-centered {{actionClass}}">載入中...</div>
+	</div>
+</div>
+<!-- /quick-action-processing -->
+
+<!-- accept -->
+<div class="review-panel accept">
+	<div class="header">接收中...</div>
+	<div id="afchContent" class="content">
+
+		<div id="newTitleWrapper">
+			<label for="newTitle" class="afch-label">新標題</label>
+			<input type="text" id="newTitle" class="afch-input afch-textfield" placeholder="目標頁名稱"
+				{{#newTitle}}value="{{newTitle}}"{{/newTitle}} />
+			<span id="titleStatus"></span>
+		</div>
+
+		<div id="assessmentWrapper">
+			<label for="newAssessment" class="afch-label">條目評級</label>
+			<select id="newAssessment" class="afch-input">
+				<option value="" selected></option>
+				<option value="stub">小作品</option>
+				<option value="start">初級</option>
+				<option value="C">丙級（C）</option>
+				<option value="B">乙級（B）</option>
+				<option value="list">列表</option>
+				<option value="disambig">消歧義</option>
+				<option value="template">模板</option>
+				<option value="redirect">重定向</option>
+				<option value="portal">主題</option>
+				<option value="project">計劃</option>
+				<option value="na">未知</option>
+			</select>
+		</div>
+
+		{{#hasWikiProjects}}
+		<div id="wikiProjectWrapper">
+			<label for="newWikiProjects" class="afch-label">新增維基專題</label>
+			<select id="newWikiProjects" class="afch-input" multiple>
+				{{#wikiProjects}}
+				<option value="{{templateName}}">{{displayName}}</option>
+				{{/wikiProjects}}
+			</select>
+		</div>
+		{{/hasWikiProjects}}
+
+		<div id="categoryWrapper">
+			<label for="newCategories" class="afch-label">新增分類</label>
+			<select id="newCategories" class="afch-input" multiple>
+				{{#categories}}
+				<option value="{{.}}" selected>{{.}}</option>
+				{{/categories}}
+			</select>
+		</div>
+
+		{{#showPatrolOption}}
+		<div id="patrolPageWrapper">
+			<label for="patrolPage" class="afch-label">將頁面標記為已巡查</label>
+			<input type="checkbox" id="patrolPage" class="afch-input"/>
+		</div>
+		{{/showPatrolOption}}
+
+		<div id="notifyWrapper">
+			<label for="notifyUser" class="afch-label">通知提交者</label>
+			<input type="checkbox" id="notifyUser" class="afch-input" checked/>
+		</div>
+
+		<div id="afchSubmitForm" data-running="接受草稿中..." class="gradient-button accept">接受 &amp; 發佈</div>
+
+	</div>
+</div>
+<!-- /accept -->
+
+<!-- decline -->
+<div class="review-panel decline">
+	<div class="header">拒絕草稿中...</div>
+	<div id="afchContent" class="content centered">
+
+		<fieldset id="declineRejectWrapper" class="radioContainer afch-input" name="declineReject">
+			<input type="radio" id="declineRejectDecline" name="declineReject" value="decline" checked />
+			<label for="declineRejectDecline"><b>仍需改善</b> (提交次數較少，且有改善空間)</label>
+			&emsp;
+			<input type="radio" id="declineRejectReject" name="declineReject" value="reject" />
+			<label for="declineRejectReject"><b>拒絕再次提交</b> (不適合的主題，且重複提交未見改善)</label>
+		</fieldset>
+
+		<div id="declineReasonWrapper">
+			<select id="declineReason" class="afch-input text-left" multiple="multiple" data-placeholder="請選擇1-2個選項">
+				<option value=""></option>
+				<optgroup label="其它">
+					<option value="reason">自訂 - 自訂理由</option>
+				</optgroup>
+				<optgroup label="無效提交">
+					<option value="A1">A1 - 正文內容非常短、內容空泛或僅有定義的小小作品</option>
+					<option value="A2">A2 - 內容只包含外部連結、參見、圖書參考、分類、範本、跨語言連結的條目（消歧義頁、重定向、軟重定向除外）</option>
+					<option value="G2">G1/G2 - 沒有實際的內容或像是編輯測試</option>
+				</optgroup>
+				<optgroup label="关注度">
+					<option value="N">N - 尚不符合一般關注度指引</option>
+					<option value="book">book - 尚不符合書籍關注度指引</option>
+					<option value="bio">bio - 尚不符合人物關注度指引</option>
+					<option value="geo">geo - 尚不符合地理關注度指引</option>
+					<option value="invalid">invalid - 來源未構成有效介紹</option>
+				</optgroup>
+				<optgroup label="来源不足">
+					<option value="primary">primary - 依賴第一手來源</option>
+					<option value="OR">or - 疑似原創研究或創新理念</option>
+					<option value="no footnotes">no footnotes - 沒有內文腳註</option>
+					<option value="unreferenced">unreferenced - 沒有任何來源</option>
+					<option value="rs">rs - 缺乏可靠來源</option>
+				</optgroup>
+				<optgroup label="内容">
+					<option value="cv">cv - 疑似侵害著作權(請使用Twinkle提報)</option>
+					<option value="lang">notmandarin - 包含過多不是現代標準漢語的內容</option>
+					<option value="A6">A6 - 复制自其他维基百科语言版本，且完全没有翻译</option>
+					<option value="npov">npov - 不中立</option>
+					<option value="G11">G11 - 疑似廣告宣傳</option>
+					<option value="coi">coi - 疑似利益衝突</option>
+					<option value="merge">merge - 合併至現有條目</option>
+				</optgroup>
+			</select>
+		<div id="viewDeclineReasons" align="right" style="font-size:12px;">
+			<a href="https://zh.wikipedia.org/wiki/Template:AFC_submission/comments">查看或修改理由</a>
+		</div>
+
+			<div id="previewWrapper">
+				<a id="previewTrigger" class="link" role="button">(顯示預覽)</a>
+				<div id="previewContainer"></div>
+			</div>
+		</div>
+
+		<div id="rejectReasonWrapper" class="hidden">
+			<select id="rejectReason" class="afch-input text-left" multiple="multiple" data-placeholder="請選擇1-2個選項">
+				<option value=""></option>
+				<optgroup label="维基百科不是什么">
+				<option value="neo">dict - 內容短小或尚不符合一般關注度指引的詞條</option>
+				<option value="OR">OR - 主題很大篇幅都是原創研究，且無法根據第二手來源證實</option>
+				<option value="guide">guide - 手冊、攻略、教科書</option>
+				<option value="voy">voy - 包含景點、商店等具體資訊的旅遊指南</option>
+			</optgroup>
+				<optgroup label="其它典型">
+				<option value="N">N - 主題始終無法被證實具有關注度</option>
+				<option value="G3">G3 - 純粹破壞，包括但不限於明顯的惡作劇、錯誤訊息、人身攻擊等</option>
+				<option value="G12">G12 - 未列明來源且語調負面的生者傳記</option>
+				<option value="spa">SPA - 明顯的廣告宣傳，且多次提交未見改善</option>
+				<option value="rs">rs - 始終無法提供可靠來源</option>
+			</select>
+		<div id="viewRejectReasons" align="right" style="font-size:12px;">
+			<a href="https://zh.wikipedia.org/wiki/Template:AFC_submission/reject reasons">查看或修改理由</a>
+		</div>
+		</div>
+
+		<div id="declineInputWrapper">
+			<div id="textfieldWrapper" class="afch-option hidden">
+				<label for="declineTextfield" class="afch-label"></label>
+				<input id="declineTextfield" type="text" class="afch-input afch-textfield" placeholder="" />
+			</div>
+
+			<div id="textfieldWrapper2" class="afch-option hidden">
+				<label for="declineTextfield2" class="afch-label"></label>
+				<input id="declineTextfield2" type="text" class="afch-input afch-textfield" placeholder="" />
+			</div>
+
+			<div id="cvUrlWrapper" class="afch-option hidden">
+				<label for="cvUrlTextarea" class="afch-label">侵權來源連結（每行一個）</label>
+				<textarea id="cvUrlTextarea" class="afch-input afch-textfield afch-textarea"
+					placeholder="侵權來源連結（每行一個）"
+					cols="110" rows="3"></textarea>
+			</div>
+
+			<textarea id="declineTextarea" class="afch-input afch-textfield afch-textarea"
+				placeholder="必要時，這裡加上額外的點評，可以使用維基語法"
+				cols="100" rows="5"></textarea>
+
+			<div id="csdWrapper" class="afch-option hidden">
+				<input type="checkbox" id="csdSubmission" class="afch-input"/>
+				<label for="csdSubmission" class="afch-label">提報快速刪除</label>
+			</div>
+		</div>
+
+		<div id="rejectInputWrapper" class="hidden">
+			<textarea id="rejectTextarea" class="afch-input afch-textfield afch-textarea"
+				placeholder="必要時，這裡加上額外的點評，可以使用維基語法"
+				cols="100" rows="5"></textarea>
+		</div>
+
+		<div id="notifyWrapper" class="hidden">
+			<div class="afch-option">
+				<input type="checkbox" id="notifyUser" class="afch-input" checked/>
+				<label for="notifyUser" class="afch-label">通知提交者</label>
+			</div>
+			<div class="afch-option">
+				<input type="checkbox" id="inviteToTeahouse" class="afch-input" />
+				<label for="inviteToTeahouse" class="afch-label">邀請前往互助客棧或即時聊天求助 <small>(對已經收到的用戶無效)</small></label>
+			</div>
+		</div>
+
+		<div id="afchSubmitForm" data-running="拒絕草稿..." class="gradient-button button-centered decline hidden">拒絕草稿</div>
+
+	</div>
+</div>
+<!-- /decline -->
+
+<!-- comment -->
+<div class="review-panel comment">
+	<div class="header">評論中...</div>
+	<div id="afchContent" class="content centered">
+
+		<textarea id="commentText" class="afch-input afch-textfield afch-textarea"
+			placeholder="輸入您對提交的草稿的評論（可使用維基語法）。您的簽名將自動添加。"
+			cols="100" rows="5"></textarea>
+
+	<div class="afch-option">
+		<input type="checkbox" id="notifyUser" class="afch-input" {{#notifyByDefault}}checked{{/notifyByDefault}} />
+		<label for="notifyUser" class="afch-label">通知提交者</label>
+	</div>
+
+		<div id="afchSubmitForm" data-running="提交點評中..." class="gradient-button button-centered comment">提交點評</div>
+
+	</div>
+</div>
+<!-- /comment -->
+
+<!-- submit -->
+<div class="review-panel submit">
+	<div class="header">提交中...</div>
+	<div id="afchContent" class="content centered">
+		<label for="submitType" class="afch-label">提交身分</label>
+		<select id="submitType" class="afch-input">
+			{{#customSubmitters}}
+			<option value="{{name}}" {{#selected}}已選取{{/selected}}>{{description}}</option>
+			{{/customSubmitters}}
+			<option value="creator">頁面建立者</option>
+			<option value="self">您自己</option>
+			<option value="other">其他人</option>
+		</select>
+
+		<div id="submitterNameWrapper" class="hidden">
+			<input type="text" id="submitterName" class="afch-input afch-textfield" placeholder="使用者名稱" />
+			<div id="submitterNameStatus" class="error"></div>
+		</div>
+
+		<div id="afchSubmitForm" data-running="延後中..." class="gradient-button button-centered submit">提交</div>
+
+	</div>
+</div>
+<!-- /submit -->
+
+<!-- postpone-o7 -->
+<div class="review-panel postpone-o7">
+	<div class="header">延後中...</div>
+	<div id="afchContent" class="content centered">
+		<textarea id="commentText" class="afch-input afch-textfield afch-textarea"
+			placeholder="輸入推遲刪除的理由，這將作為新評論添加到草稿中。"
+			cols="100" rows="5"></textarea>
+
+		<div id="afchSubmitForm" data-running="Postponing..." class="gradient-button button-centered postpone-o7">
+			推遲刪除
+		</div>
+
+	</div>
+</div>
+<!-- /postpone-o7 -->
+
+//</nowiki>
