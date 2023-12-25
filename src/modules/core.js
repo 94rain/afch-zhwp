@@ -638,7 +638,7 @@ var Hogan = {};
 					// Current user
 					user: mw.user.getName(),
 					// Edit summary ad
-					summaryAd: ' ([[WP:AFCH|AFCH]])',
+					summaryAd: ' ([[PJ:AFCH|AFCH]])',
 					// Require users to be on whitelist to use the script
 					whitelistRequired: true,
 					// Name of the whitelist page for reviewers
