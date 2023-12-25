@@ -2061,8 +2061,8 @@ window.wgULSv2 = function ( hant, tw ) {
 			.movePage(
 				afchPage.rawTitle, data.newTitle,
 				wgULS(
-					'发布已接受的[[P:AFC|条目建立]]草稿',
-					'發布已接受的[[P:AFC|條目建立]]草稿' ),
+					'发布已接受的[[PJ:AFC|条目建立]]草稿',
+					'發布已接受的[[PJ:AFC|條目建立]]草稿' ),
 				{
 					movetalk: true,
 					noredirect: true
@@ -2096,7 +2096,7 @@ window.wgULSv2 = function ( hant, tw ) {
 
 				newPage.edit( {
 					contents: newText.get(),
-					summary: '清理已接受的[[P:AFC|条目建立]]草稿'
+					summary: '清理已接受的[[PJ:AFC|条目建立]]草稿'
 				} );
 
 				// Patrol the new page if desired
@@ -2153,8 +2153,8 @@ window.wgULSv2 = function ( hant, tw ) {
 					mode: 'prependtext',
 					contents: talkText + '\n\n',
 					summary: wgULS(
-						'放置[[P:AFC|条目建立专题]]模板',
-						'放置[[P:AFC|條目建立專題]]模板' )
+						'放置[[PJ:AFC|条目建立专题]]模板',
+						'放置[[PJ:AFC|條目建立專題]]模板' )
 				} );
 
 				// NOTIFY SUBMITTER
@@ -2522,9 +2522,7 @@ window.wgULSv2 = function ( hant, tw ) {
 				var text = new AFCH.Text( rawText );
 
 				// Add the deletion tag and clean up for good measure
-				text.prepend(
-					'{{delete|O7' +
-			'}}\n' );
+				text.prepend('{{delete|O7' + '}}\n' );
 				text.cleanUp();
 
 				afchPage.edit( {
