@@ -67,10 +67,10 @@ except OSError:
 
 print 'Uploading to {}...'.format(wiki)
 
-if wiki == 'zhwiki':
+if wiki == 'prod':
 	site = mwclient.Site('zh.wikipedia.org')
-elif wiki == 'testwiki':
-	site = mwclient.Site('test.wikipedia.org')
+elif wiki == 'beta':
+	site = mwclient.Site('zh.wikipedia.beta.wmflabs.org')
 else:
 	print 'Error: unrecognized wiki "{}". Must be "zhwiki" or "testwiki".'.format(wiki)
 	sys.exit(0)

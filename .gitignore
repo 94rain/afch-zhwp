@@ -5,3 +5,7 @@ build
 *.swp
 package-lock.json
 .git/
+apicache-py3/
+*.ctrl
+.gitignore
+*.lwp

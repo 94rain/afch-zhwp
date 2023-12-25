@@ -1799,7 +1799,7 @@ var Hogan = {};
 					// Otherwise, load the template file and *then* render
 					$.ajax( {
 						type: 'GET',
-						url: AFCH.consts.baseurl + '/tpl-preferences.js',
+						url: AFCH.consts.baseurl + wgULS( '/tpl-preferences_zh-hans.js', '/tpl-preferences_zh-hant.js' ),
 						dataType: 'text'
 					} ).done( function ( data ) {
 						prefs.views = new AFCH.Views( data );
@@ -2140,11 +2140,7 @@ var Hogan = {};
 				unit = '年';
 			}
 
-			if ( amount !== 1 ) {
-				unit += ' ';
-			}
-
-			return [ amount, unit, '之前' ].join( ' ' );
+			return [ amount, unit, '之前' ].join( '' );
 		},
 
 		/**

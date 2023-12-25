@@ -1,0 +1,28 @@
+/* https://github.com/94rain/afch-zhwp, translated and adapted from https://github.com/WPAFC/afch-rewrite */
+//<nowiki>
+
+<!-- preferences -->
+<div class="afch afch-form afch-preferences">
+	<div class="details centered">
+		<strong>AFCH测试版</strong>
+		<div>用户代理：{{userAgent}}</div>
+	</div>
+	<div id="autoOpenWrapper">
+		<label for="autoOpen" class="afch-label">在打开草稿页面时自动启动AFCH脚本</label>
+		<input type="checkbox" id="autoOpen" class="afch-input" {{#autoOpen}}checked{{/autoOpen}} />
+	</div>
+	<div id="launchLinkPositionWrapper">
+		<label for="launchLinkPosition" class="afch-label">"审核草稿 (AFCH)"链接的位置</label>
+		<select id="launchLinkPosition" class="afch-input">
+			<option value="p-cactions">在"编辑"和"查看历史"旁边</option>
+			<option value="p-tb">页面左侧的"工具"栏</option>
+		</select>
+	</div>
+	<div id="logCsdWrapper">
+		<label for="logCsd" class="afch-label">记录快速删除提名</label>
+		<input type="checkbox" id="logCsd" class="afch-input" {{#logCsd}}checked{{/logCsd}} />
+	</div>
+</div>
+<!-- /preferences -->
+
+//</nowiki>
