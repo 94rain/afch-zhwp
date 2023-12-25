@@ -677,7 +677,7 @@ window.wgULSv2 = function ( hant, tw ) {
 	// Add the launch link
 	$afchLaunchLink = $( mw.util.addPortletLink(
 		AFCH.prefs.launchLinkPosition, '#',
-		wgULS( '审核(AFCH 测试版)', '審核(AFCH 測試版)' ), 'afch-launch',
+		wgULS( '审核草稿 (AFCH)', '審核草稿 (AFCH)' ), 'afch-launch',
 		wgULS( '使用AFCH审核草稿', '使用AFCH審核草稿' ), '1' ) );
 
 	if ( AFCH.prefs.autoOpen &&
@@ -775,7 +775,7 @@ window.wgULSv2 = function ( hant, tw ) {
 		// Store this to a variable so we can wait for its success
 		var loadViews = $.ajax( {
 			type: 'GET',
-			url: AFCH.consts.baseurl + '/tpl-submissions.js',
+			url: AFCH.consts.baseurl + wgULS('/tpl-submissions_zh-hans.js', '/tpl-submissions_zh-hant.js'),
 			dataType: 'text'
 		} ).done( function ( data ) {
 			afchViews = new AFCH.Views( data );
@@ -1092,7 +1092,7 @@ window.wgULSv2 = function ( hant, tw ) {
 						AFCH.relativeTimeSince( afchSubmission.params.reviewts ) +
 						wgULS( '开始审阅这篇草稿', '開始審閱這篇草稿' ) :
 					wgULS( '已经开始审阅这篇草稿', '已經開始審閱這篇草稿' ) ) +
-				'.',
+				' ',
 					isOwnReview ? wgULS( '取消标记为正在审阅', '取消標記為正在審閱' ) :
 						wgULS( '查看页面历史', '查看頁面歷史' ),
 					isOwnReview ? function () {
