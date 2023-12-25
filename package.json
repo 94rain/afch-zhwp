@@ -1,6 +1,6 @@
 {
   "name": "afch-zhwp",
-  "version": "0.9.1",
+  "version": "beta.0.0",
   "description": "A tool for reviewing Articles for Creation submissions on the English Wikipedia.",
   "homepage": "https://github.com/94rain/afch-zhwp",
   "bugs": {

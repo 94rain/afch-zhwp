@@ -38,8 +38,8 @@ if len(sys.argv) < 2:
 # Shortname of the wiki target
 wiki = sys.argv[1]
 
-if wiki not in ('zh', 'test'):
-	print('Error: unrecognized wiki "{}". Must be "en" or "test".'.format(wiki))
+if wiki not in ('prod', 'beta'):
+	print('Error: unrecognized wiki "{}". Must be "prod" or "test".'.format(wiki))
 	sys.exit(0)
 
 # First, create a build
@@ -66,8 +66,11 @@ except OSError:
 	os.system(command)
 
 print('Uploading to {}...'.format(wiki))
+if wiki == 'prod':
+	site = pywikibot.Site("zh", "wikipedia")
+elif wiki == 'beta':
+	site = pywikibot.Site("zh", "beta")
 
-site = pywikibot.Site(wiki, "wikipedia")
 site.login()
 print('Logged in as {}.'.format(site.user()))
 
@@ -84,7 +87,7 @@ except AttributeError:
 	sha1 = branch.commit.id
 
 # Prepend this to every page
-header = '/* Uploaded from https://github.com/WPAFC/afch-rewrite, commit: {} ({}) */\n'.format(sha1, branch)
+header = '/* Uploaded from https://github.com/94rain/afch-zhwp, commit: {} ({}) */\n'.format(sha1, branch)
 
 def uploadFile(pagename, content):
 	page = pywikibot.Page(site, title=pagename)

@@ -1,0 +1,20 @@
+#LWP-Cookies-2.0
+Set-Cookie3: GeoIP="US:::38.00:-97.00:v4"; path="/"; domain=".beta.wmflabs.org"; path_spec; domain_dot; secure; discard; version=0
+Set-Cookie3: WMF-Last-Access-Global="25-Dec-2023"; path="/"; domain=".wikipedia.beta.wmflabs.org"; path_spec; domain_dot; secure; expires="2024-01-26 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: centralauth_Session=7e9830feccaf6d8606a5a50d5f618784; path="/"; domain=".wikipedia.beta.wmflabs.org"; path_spec; domain_dot; secure; discard; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_Token=d84e65668fe1f6b06ec822d5bee0eddc; path="/"; domain=".wikipedia.beta.wmflabs.org"; path_spec; domain_dot; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_User=94rain; path="/"; domain=".wikipedia.beta.wmflabs.org"; path_spec; domain_dot; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: centralauth_ss0-Token=d84e65668fe1f6b06ec822d5bee0eddc; path="/"; domain=".wikipedia.beta.wmflabs.org"; path_spec; domain_dot; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; version=0
+Set-Cookie3: centralauth_ss0-User=94rain; path="/"; domain=".wikipedia.beta.wmflabs.org"; path_spec; domain_dot; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; version=0
+Set-Cookie3: ss0-centralauth_Session=7e9830feccaf6d8606a5a50d5f618784; path="/"; domain=".wikipedia.beta.wmflabs.org"; path_spec; domain_dot; secure; discard; HttpOnly=None; version=0
+Set-Cookie3: NetworkProbeLimit="0.001"; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2023-12-25 03:33:52Z"; version=0
+Set-Cookie3: UseDC=master; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2023-12-25 02:34:02Z"; HttpOnly=None; version=0
+Set-Cookie3: WMF-Last-Access="25-Dec-2023"; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2024-01-26 00:00:00Z"; HttpOnly=None; version=0
+Set-Cookie3: cpPosIndex="1%401703471632%23be26283e9f5b302a20a8b22bc4ef5ab5"; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2023-12-25 02:34:02Z"; HttpOnly=None; version=0
+Set-Cookie3: loginnotify_prevlogins="2023-15xm2a8-9gqyo3gq8mrv24vur2mvfbmb4rbjm84"; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2024-06-22 02:33:52Z"; HttpOnly=None; version=0
+Set-Cookie3: ss0-zhwikiSession=u3oea4d55bsv5hneguieqar3k70doir7; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; discard; HttpOnly=None; version=0
+Set-Cookie3: zhwikiSession=u3oea4d55bsv5hneguieqar3k70doir7; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; discard; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: zhwikiUserID=186; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: zhwikiUserName=94rain; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; SameSite=None; version=0
+Set-Cookie3: zhwikiss0-UserID=186; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; version=0
+Set-Cookie3: zhwikiss0-UserName=94rain; path="/"; domain="zh.wikipedia.beta.wmflabs.org"; path_spec; secure; expires="2024-12-24 02:33:52Z"; HttpOnly=None; version=0
