@@ -638,7 +638,7 @@ var Hogan = {};
 					// Current user
 					user: mw.user.getName(),
 					// Edit summary ad
-					summaryAd: ' ([[WP:AFCH|AFCH]])',
+					summaryAd: ' ([[PJ:AFCH|AFCH]])',
 					// Require users to be on whitelist to use the script
 					whitelistRequired: true,
 					// Name of the whitelist page for reviewers
@@ -669,10 +669,11 @@ var Hogan = {};
 				// the script, so long as there was a user whose name was
 				// three characters long on the list!
 				var $howToDisable,
-					sanitizedUser =
-				user.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&' ),
-					userAllowed =
-				( new RegExp( '\\|\\s*' + sanitizedUser + '\\s*}' ) ).test( text );
+					sanitizedUser = user.replace( /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&' ),
+					userSysop = $.inArray( 'sysop', mw.config.get( 'wgUserGroups' ) ) > -1,
+					userNPP = $.inArray( 'patroller', mw.config.get( 'wgUserGroups' ) ) > -1,
+					userOnWhitelist = ( new RegExp( '\\|\\s*' + sanitizedUser + '\\s*}' ) ).test( text ),
+					userAllowed = userOnWhitelist || userSysop || userNPP;
 
 				if ( !userAllowed ) {
 					// If we can detect that the gadget is currently enabled, offer a
